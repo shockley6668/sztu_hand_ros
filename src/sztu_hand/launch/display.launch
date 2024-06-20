@@ -1,0 +1,14 @@
+<launch>
+	<!-- 设置机器人模型路径参数 -->
+	<param name="robot_description" textfile="$(find sztu_hand)/hand_urdf/robot.urdf" />
+
+	<!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+	
+	<!-- 运行robot_state_publisher节点，发布tf  -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	
+	<!-- 运行rviz可视化界面 -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d /home/kun/hand_ws/src/sztu_hand/rviz/rviz.rviz" required="true" />
+	<node pkg="sztu_hand" type="sztu_hand_node" name="sztu_hand_node" log="screen"/>
+</launch>
